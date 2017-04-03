@@ -1,0 +1,38 @@
+{
+  // Use IntelliSense to learn about possible Node.js debug attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Electron Main",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
+      "preLaunchTask": "build:webpack",
+      "cwd": "${workspaceRoot}/",
+      "windows": {
+        "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"
+      },
+      "program": "${workspaceRoot}/dist/main.js",
+      "protocol": "legacy",
+      "sourceMaps": true,
+      "skipFiles": [
+        "${workspaceRoot}/node_modules/**"
+      ],
+      "outFiles": [
+        "${workspaceRoot}/dist/main.js",
+        "${workspaceRoot}/dist/**/*.js",
+        "${workspaceRoot}/dist/**/*.js.map"
+      ]
+    },
+    {
+      "name": "Debug Main Process",
+      "type": "node",
+      "request": "launch",
+      "cwd": "${workspaceRoot}",
+      "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd",
+      "program": "${workspaceRoot}/dist/main.js"
+    }
+  ]
+}

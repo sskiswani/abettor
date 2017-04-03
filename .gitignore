@@ -1,0 +1,31 @@
+# My stuff
+\!*
+.env.local
+
+# copy/pasted stuff.
+_site
+.build
+.DS_Store
+.git
+.history
+.idea
+.jshintrc
+.nyc_output
+.publish
+.sass-cache
+*.log
+*.map
+*.swp
+*~
+bin
+bin.zip
+build
+coverage
+dist
+dist.zip
+Gemfile.lock
+jsconfig.json
+node_modules
+test/data/result.json
+typings
+yarn.lock
