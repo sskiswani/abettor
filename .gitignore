@@ -19,7 +19,6 @@ _site
 *~
 bin
 bin.zip
-build
 coverage
 dist
 dist.zip
