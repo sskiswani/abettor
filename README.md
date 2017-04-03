@@ -1,3 +1,3 @@
 # elctron playground
 # TODO
-- [] clear out unused `dependencies` & `devDependencies`
+- [ ] clear out unused `dependencies` & `devDependencies`
