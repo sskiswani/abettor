@@ -7,7 +7,7 @@
   "showOutput": "always",
   "tasks": [
     {
-      "taskName": "build:webpack",
+      "taskName": "build",
       "command": "${workspaceRoot}/node_modules/.bin/gulp.cmd",
       "isShellCommand": true,
       "args": [

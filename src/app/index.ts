@@ -1,1 +1,2 @@
-console.info('hi');
+import App from './app';
+export default App;

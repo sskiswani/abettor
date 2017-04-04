@@ -7,7 +7,7 @@ const { absPath, paths } = require('../config');
 
 module.exports = merge(require('./webpack.base'), {
    entry: {
-      app: ['babel-polyfill', './src/app/index.ts']
+      app: ['babel-polyfill', './src/app/index.ts', "./src/app/app.scss"]
    },
 
    output: {
