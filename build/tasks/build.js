@@ -49,5 +49,4 @@ gulp.task('webpack:client', (cb) => {
 
 createDevBuilder('webpack:electron:dev', require('../webpack/webpack.server'));
 createDevBuilder('webpack:client:dev', require('../webpack/webpack.client'));
-
 gulp.task('webpack', ['webpack:electron', 'webpack:client']);

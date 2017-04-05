@@ -1,3 +1,4 @@
+import * as ng from 'angular';
 import * as marked from 'marked';
 import { unindent } from './helpers';
 
@@ -11,7 +12,7 @@ marked.setOptions({
    smartypants: true
 });
 
-const MarkdownDirective = ($compile) => ({
+export const MarkdownDirective = Object.assign(($compile) => ({
    restrict: 'AE',
    replace: true,
    scope: { opts: '=' },
@@ -19,5 +20,6 @@ const MarkdownDirective = ($compile) => ({
       element.html(`<div class='content'>${marked(unindent(element.text()), scope.opts)}</div>`);
       $compile(element.contents())(scope.$parent);
    }
-});
-MarkdownDirective.$inject = ['$compile'];
+}), { $inject: ['$compile'] });
+
+export default (angular: ng.IModule) => angular.directive('markdown', MarkdownDirective);

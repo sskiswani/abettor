@@ -1,6 +1,5 @@
- const gulp = require('gulp');
- const requireDir = require('require-dir');
+const gulp = require('gulp');
 
-requireDir('./build/tasks', { recurse: true });
+require('./build/tasks');
 
- gulp.task('default', gulp.series('clean', 'webpack'));
+gulp.task('default', ['clean', 'webpack']);
