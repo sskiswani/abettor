@@ -1,25 +1,26 @@
+const { resolve } = require('path');
 const webpack = require('webpack');
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
-const { absPath, paths } = require('../config');
+const { root, src, dist } = require('../config');
+
+const appSrc = `${src}/app`;
+const appDist = `${dist}/app`;
 
 module.exports = merge(require('./webpack.base'), {
    entry: {
-      app: ['babel-polyfill', './src/app/index.ts', "./src/app/app.scss"]
+      app: ['babel-polyfill', `${appSrc}/index.ts`, `${appSrc}/app.scss`]
    },
-
    output: {
-      path: absPath('./dist/app')
+      path: resolve(appDist)
    },
-
    devServer: {
-      contentBase: [absPath('./dist/app'), absPath('./src/app')],
+      contentBase: [resolve(root, appDist), resolve(root, appSrc)],
       historyApiFallback: true,
       port: 9000,
    },
-
    module: {
       loaders: [
          {
@@ -40,7 +41,6 @@ module.exports = merge(require('./webpack.base'), {
          }
       ]
    },
-
    plugins: [
       new CommonsChunkPlugin({
          name: 'vendor',
@@ -51,7 +51,7 @@ module.exports = merge(require('./webpack.base'), {
          filename: 'style.css',
       }),
       new HtmlWebpackPlugin({
-         template: './src/app/index.html',
+         template: `${appSrc}/index.html`,
          inject: 'body',
          hash: true
       })

@@ -1,20 +1,16 @@
 {
-  "name": "angular-electron-demo",
+  "name": "abettor",
   "version": "0.1.0",
-  "description": "messin around",
+  "description": "a helper",
   "private": true,
   "license": "unlicense",
-  "bin": {
-    "webpack-dev-server": "./node_modules/.bin/webpack-dev-server",
-    "webpack": "./node_modules/.bin/webpack",
-    "gulp": "./node_modules/.bin/gulp",
-    "electron": "./node_modules/.bin/electron"
+  "config": {
+    "src": "./src",
+    "dist": "./dist"
   },
   "scripts": {
     "clean": "gulp clean",
-    "gulp": "gulp",
-    "electron": "electron",
-    "build": "webpack",
+    "build": "gulp webpack",
     "prestart": "gulp webpack",
     "start": "electron ./dist/main.js"
   },
@@ -41,7 +37,7 @@
     "electron-prebuilt": "^1.4.13",
     "extract-text-webpack-plugin": "^2.1.0",
     "fs-jetpack": "^0.13.3",
-    "gulp": "gulpjs/gulp#4.0",
+    "gulp": "^3.9.1",
     "gulp-batch": "^1.0.5",
     "gulp-util": "^3.0.8",
     "html-webpack-plugin": "^2.28.0",

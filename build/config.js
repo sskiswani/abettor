@@ -1,28 +1,6 @@
-const { Directory } = require('./utils');
+const { resolve } = require('path');
+const { config } = require('../package.json');
 
-const rootDir = Directory.resolve(__dirname, '..');
-const srcDir = rootDir.cd('./src');
-const outDir = rootDir.cd('./dist');
-
-module.exports = {
-   pkg: require('../package.json'),
-   rootDir,
-   srcDir,
-   outDir,
-
-   absPath: rootDir.abs,
-   relPath: rootDir.rel,
-
-   paths: {
-      app: {
-         srcDir: srcDir.abs('app'),
-         entry: srcDir.abs('app/index.ts'),
-         out: outDir.abs('app')
-      },
-
-      server: {
-         entry: srcDir.abs('./src/index.ts'),
-         out: srcDir.abs('./dist')
-      }
-   }
-};
+module.exports = Object.assign(config, {
+   root: resolve(__dirname, '..')
+});

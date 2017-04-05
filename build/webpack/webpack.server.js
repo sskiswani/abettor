@@ -1,16 +1,14 @@
+const { resolve } = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
-const { pkg, absPath } = require('../config');
+const { root, dist } = require('../config');
 
-const deps = Object.keys(pkg.dependencies).concat(Object.keys(pkg.devDependencies));
 module.exports = merge(require('./webpack.base'), {
    target: 'electron-main',
    output: {
-      path: absPath('dist')
+      path: resolve('dist')
    },
-   entry: {
-      main: ['./src/index.ts'],
-   },
+   entry: { main: [`${src}/index.ts`], },
    externals: [
       (context, request, callback) => {
          if (request && request.indexOf('node_modules') > 0) {
