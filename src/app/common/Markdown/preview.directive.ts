@@ -14,6 +14,7 @@ marked.setOptions({
 export default Object.assign(($compile, $templateRequest) => ({
    restrict: 'AE',
    replace: true,
+   transclude: true,
    scope: {
       opts: '=',
       src: '='
@@ -27,14 +28,8 @@ export default Object.assign(($compile, $templateRequest) => ({
       };
 
       if (attrs.src) {
-         scope.$watch('src', (src) => {
-            $templateRequest(src, true)
-               .then((response) => { render(response); },
-               (err) => {
-                  render('');
-                  scope.$emit('error', attrs.src, err);
-               });
-         });
+         render(scope.src);
+         scope.$watch('src', render);
       } else {
          render(element.text());
       }

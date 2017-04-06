@@ -4,8 +4,6 @@ const template = require('./editor.template.html') as string;
 export default {
    restrict: 'E',
    bindings: {},
-   transclude: true,
    template,
-   controller: ['$scope', MarkdownEditorController],
-   require: { ngModel: 'ngModel' }
+   controller: ['$scope', MarkdownEditorController]
 } as ng.IComponentOptions;
