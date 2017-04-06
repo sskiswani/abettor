@@ -1,4 +1,3 @@
-import * as ng from 'angular';
 import * as marked from 'marked';
 import { unindent } from './helpers';
 
@@ -12,14 +11,32 @@ marked.setOptions({
    smartypants: true
 });
 
-export const MarkdownDirective = Object.assign(($compile) => ({
+export default Object.assign(($compile, $templateRequest) => ({
    restrict: 'AE',
    replace: true,
-   scope: { opts: '=' },
+   scope: {
+      opts: '=',
+      src: '='
+   },
    link: (scope, element, attrs) => {
-      element.html(`<div class='content'>${marked(unindent(element.text()), scope.opts)}</div>`);
-      $compile(element.contents())(scope.$parent);
-   }
-}), { $inject: ['$compile'] });
+      const render = (text) => {
+         text = marked(unindent(text), scope.opts);
+         text = `<div class='content'>${text}</div>`;
+         element.html(`<div class='container'>${text}</div>`);
+         $compile(element.contents())(scope.$parent);
+      };
 
-export default (angular: ng.IModule) => angular.directive('markdown', MarkdownDirective);
+      if (attrs.src) {
+         scope.$watch('src', (src) => {
+            $templateRequest(src, true)
+               .then((response) => { render(response); },
+               (err) => {
+                  render('');
+                  scope.$emit('error', attrs.src, err);
+               });
+         });
+      } else {
+         render(element.text());
+      }
+   }
+}), {$inject: ['$compile', '$templateRequest']});

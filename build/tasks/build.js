@@ -1,12 +1,11 @@
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const webpack = require('webpack');
-const config = require('../config');
+const {src} = require('../config');
 
 function createDevBuilder(name, webpackConfig) {
    //~ create a cached compiler
    const compiler = webpack(webpackConfig);
-
    gulp.task(name, (cb) => {
       compiler.run((err, stats) => {
          if (err) { throw new gutil.PluginError('webpack:electron:dev', err); }
@@ -33,7 +32,6 @@ gulp.task('webpack:electron', (cb) => {
    });
 });
 
-
 //~ webpack build for client app
 gulp.task('webpack:client', (cb) => {
    webpack(require('../webpack/webpack.client'), (err, stats) => {
@@ -49,4 +47,9 @@ gulp.task('webpack:client', (cb) => {
 
 createDevBuilder('webpack:electron:dev', require('../webpack/webpack.server'));
 createDevBuilder('webpack:client:dev', require('../webpack/webpack.client'));
+
 gulp.task('webpack', ['webpack:electron', 'webpack:client']);
+
+gulp.task('watch', ['webpack:client:dev'], () => {
+   gulp.watch(`${src}/app/**/*`, ['webpack:client:dev']);
+});
