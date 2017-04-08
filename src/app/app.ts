@@ -5,32 +5,32 @@ import common from './common';
 import markdown from './common/modules/Markdown';
 import Home from './components/Home';
 
-const app = angular
-   .module('app', [
-      uiRouter,
-      Home,
-      markdown,
-      common
-   ]).config(($stateProvider: IStateProvider, $urlRouterProvider: IUrlRouterProvider) => {
-      $stateProvider.state('hello', {
-         url: '/hello',
-         template: '<h3>hello world!</h3>'
-      });
+const app = angular.module('app', [
+   uiRouter,
+   Home,
+   markdown,
+   common
+]);
 
+import AppConfig from './app.config';
+app.constant('config', AppConfig)
+   .config((config, $stateProvider: IStateProvider, $urlRouterProvider: IUrlRouterProvider) => {
+      $stateProvider.state({
+         name: 'midi',
+         url: '/midi',
+         template: '<h1>TODO</h1>'
+      });
       $stateProvider.state('about', {
          url: '/about',
-         template: '<h3>Its the UI-Router hello world app!</h3>'
+         template: '<h1>TODO</h1>'
       });
 
       $urlRouterProvider.otherwise('/');
    });
 
 import AppComponent from './app.component';
-import AppConfig from './app.config';
 import AppController from './app.controller';
-
-app.constant('config', AppConfig)
-   .component('app', AppComponent)
+app.component('app', AppComponent)
    .controller('appController', AppController);
 
 //~ include common components

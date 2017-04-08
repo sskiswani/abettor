@@ -8,7 +8,7 @@ const { makeTaskLogger, logTask } = require('./helpers');
 const { src } = require('../config');
 
 const webpackConfig = {
-   electron: require('../config/webpack/webpack.server'),
+   electron: require('../config/webpack/webpack.electron'),
    client: require('../config/webpack/webpack.client')
 };
 

@@ -2,7 +2,7 @@ export default {
    name: 'abettor',
    nav: [
       { label: 'Home', href: 'home' },
-      { label: 'Hello', href: 'hello' },
+      { label: 'MIDI', href: 'midi' },
       { label: 'About', href: 'about' }
    ]
 };
