@@ -3,19 +3,15 @@ import * as uiRouter from 'angular-ui-router';
 import { IStateProvider, IUrlRouterProvider } from 'angular-ui-router';
 import common from './common';
 import markdown from './common/modules/Markdown';
+import Home from './components/Home';
 
 const app = angular
    .module('app', [
-      common,
+      uiRouter,
+      Home,
       markdown,
-      uiRouter
+      common
    ]).config(($stateProvider: IStateProvider, $urlRouterProvider: IUrlRouterProvider) => {
-      $stateProvider.state({
-         name: 'home',
-         url: '/',
-         template: '<h3>welcome home</h3>'
-      });
-
       $stateProvider.state('hello', {
          url: '/hello',
          template: '<h3>hello world!</h3>'
@@ -39,4 +35,3 @@ app.constant('config', AppConfig)
 
 //~ include common components
 import './common/components';
-

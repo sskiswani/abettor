@@ -13,6 +13,5 @@ export default class NavbarController {
    /* @ngInject */
    constructor($scope: IScope) {
       this.scope = $scope;
-      console.info('items?', this);
    }
 }

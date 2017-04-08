@@ -1,14 +1,21 @@
 import * as angular from 'angular';
 import * as uiRouter from 'angular-ui-router';
 import { IStateProvider, IUrlRouterProvider } from 'angular-ui-router';
+import markdown from '../../common/modules/Markdown';
 import HomeComponent from './home.component';
 
-export default angular.module('app.home', [uiRouter])
-   .component('home', HomeComponent)
+export const home = angular
+   .module('app.home', [
+      uiRouter,
+      markdown
+   ])
    .config(($stateProvider: IStateProvider, $urlRouterProvider: IUrlRouterProvider) => {
+      'ngInject';
       $stateProvider.state('home', {
          url: '/',
-         component: 'home',
+         template: '<home></home>'
       });
-      $urlRouterProvider.otherwise('/');
-   });
+   })
+   .component('home', HomeComponent);
+
+export default (home.name);

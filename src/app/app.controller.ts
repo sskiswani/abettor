@@ -15,7 +15,5 @@ export default class AppController {
 
       this.name = config.name;
       this.nav = config.nav;
-
-      console.info(this);
    }
 }
