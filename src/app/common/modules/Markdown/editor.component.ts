@@ -5,5 +5,5 @@ export default {
    restrict: 'E',
    bindings: {},
    template,
-   controller: ['$scope', MarkdownEditorController]
+   controller: MarkdownEditorController
 } as ng.IComponentOptions;

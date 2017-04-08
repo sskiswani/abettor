@@ -1,6 +1,7 @@
-const { resolve } = require('path');
-const { config } = require('../package.json');
-
-module.exports = Object.assign(config, {
-   root: resolve(__dirname, '..')
+module.exports = Object.assign(require('./config'), {
+   webpackConfig: {
+      base: require('./webpack/webpack.base'),
+      client: require('./webpack/webpack.base'),
+      server: require('./webpack/webpack.base')
+   }
 });

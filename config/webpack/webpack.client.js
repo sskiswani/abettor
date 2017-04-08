@@ -1,7 +1,6 @@
 const { resolve } = require('path');
 const { env } = require('process');
 const webpack = require('webpack');
-const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const merge = require('webpack-merge');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
@@ -10,9 +9,10 @@ const { root, src, dist } = require('../config');
 const appSrc = `${src}/app`;
 const appDist = `${dist}/app`;
 
-module.exports = merge(require('./webpack.base'), {
+module.exports = merge.smart(require('./webpack.base'), {
    target: 'electron-renderer',
    entry: {
+      vendor: ['jquery', 'bootstrap'],
       app: ['babel-polyfill', `${appSrc}/index.ts`, `${appSrc}/app.scss`]
    },
    output: {
@@ -44,7 +44,7 @@ module.exports = merge(require('./webpack.base'), {
       ]
    },
    plugins: [
-      new CommonsChunkPlugin({
+      new webpack.optimize.CommonsChunkPlugin({
          name: 'vendor',
          minChunks: module => module.context && module.context.indexOf('node_modules') !== -1
       }),

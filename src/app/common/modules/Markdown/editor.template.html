@@ -1,10 +1,10 @@
 <div class="container" ng-controller="MarkdownController as $ctrl">
-  <div class="columns is-mobile">
-    <div class="column is-half">
-      <textarea ng-model="src" ng-keydown="$ctrl.keydown($event)">
+  <div class="row">
+    <div class="col">
+      <textarea class="form-control" style="resize:none;" ng-model="src" ng-keydown="$ctrl.keydown($event)">
       </textarea>
     </div>
-    <div class="column is-half">
+    <div class="col">
       <div markdown src="src" ng-transclude></div>
     </div>
   </div>

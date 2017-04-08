@@ -1,48 +1,25 @@
 import * as electron from 'electron';
-import {env} from 'process';
+import { BrowserWindow } from 'electron';
 
 // Module to control application life.
 const app = electron.app;
 
-// Module to create native browser window.
-const BrowserWindow = electron.BrowserWindow;
-
-import * as path from 'path';
-import * as url from 'url';
-console.info(`yo: -------- \n ${JSON.stringify(env, null, 2)}`);
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: Electron.BrowserWindow;
 
 function createWindow() {
-   // Create the browser window.
-   mainWindow = new BrowserWindow({ width: 800, height: 600 });
-
-   // and load the index.html of the app.
-   mainWindow.loadURL(url.format({
-      pathname: path.resolve('dist/app/index.html'),
-      protocol: 'file:',
-      slashes: true
-   }));
-
-   // Open the DevTools.
+   mainWindow = new BrowserWindow({ width: 1200, height: 800 });
+   mainWindow.loadURL('http://localhost:9001/');
    mainWindow.webContents.openDevTools();
 
-   // Emitted when the window is closed.
    mainWindow.on('closed', () => {
-      // Dereference the window object, usually you would store windows
-      // in an array if your app supports multi windows, this is the time
-      // when you should delete the corresponding element.
       mainWindow = null;
    });
 }
 
-// This method will be called when Electron has finished
-// initialization and is ready to create browser windows.
-// Some APIs can only be used after this event occurs.
 app.on('ready', createWindow);
 
-// Quit when all windows are closed.
 app.on('window-all-closed', () => {
    // On OS X it is common for applications and their menu bar
    // to stay active until the user quits explicitly with Cmd + Q
@@ -58,6 +35,3 @@ app.on('activate', () => {
       createWindow();
    }
 });
-
-// In this file you can include the rest of your app's specific main process
-// code. You can also put them in separate files and require them here.

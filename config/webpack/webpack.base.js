@@ -18,11 +18,6 @@ module.exports = {
       loaders: [
          { test: /\.html$/, loader: 'raw-loader' },
          {
-            test: /\.jsx?$/,
-            exclude: /(node_modules)/,
-            loader: 'babel-loader',
-         },
-         {
             test: /\.tsx?$/,
             exclude: /(node_modules)/,
             loaders: [
@@ -36,5 +31,8 @@ module.exports = {
       new webpack.NoEmitOnErrorsPlugin(),
       new webpack.NamedModulesPlugin(),
       new webpack.WatchIgnorePlugin([dist])
-   ]
+   ],
+   stats: {
+      colors: true
+   }
 };

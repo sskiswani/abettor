@@ -10,7 +10,6 @@
       "request": "launch",
       "name": "Electron Main",
       "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron",
-      "preLaunchTask": "build",
       "cwd": "${workspaceRoot}/",
       "windows": {
         "runtimeExecutable": "${workspaceRoot}/node_modules/.bin/electron.cmd"

@@ -1,7 +1,10 @@
-export default class MarkdownEditorController {
-   public src = '# hello';
+import { IScope } from 'angular';
 
-   constructor($scope) {
+export default class MarkdownEditorController {
+   public src = '# hi';
+
+   /* @ngInject */
+   constructor($scope: IScope) {
       $scope.src = this.src;
    }
 

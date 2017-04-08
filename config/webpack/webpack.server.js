@@ -1,15 +1,18 @@
 const { resolve } = require('path');
 const webpack = require('webpack');
 const merge = require('webpack-merge');
+
 const { root, src, dist } = require('../config');
 const CopyPlugin = require('copy-webpack-plugin');
-module.exports = merge(require('./webpack.base'), {
+
+module.exports = merge.smart(require('./webpack.base'), {
    target: 'electron-main',
    entry: {
       main: [`${src}/index.ts`],
    },
    output: {
-      path: resolve(root, dist)
+      path: resolve(root, dist),
+      libraryTarget: 'commonjs'
    },
    externals: [
       (context, request, callback) => {
