@@ -1,7 +1,8 @@
 const gulp = require('gulp');
 const gutil = require('gulp-util');
 const webpack = require('webpack');
-const {src} = require('../config');
+const merge = require('webpack-merge');
+const { src } = require('../config');
 
 function createDevBuilder(name, webpackConfig) {
    //~ create a cached compiler
@@ -45,8 +46,22 @@ gulp.task('webpack:client', (cb) => {
    });
 });
 
-createDevBuilder('webpack:electron:dev', require('../webpack/webpack.server'));
 createDevBuilder('webpack:client:dev', require('../webpack/webpack.client'));
+
+gulp.task('webpack:dev-server', (callback) => {
+   let devConfig = merge(require('../webpack/webpack.client'), {
+      cache: true,
+      devtool: 'inline-source-map',
+      debug: true,
+      plugins: [
+         new webpack.DefinePlugin({
+            'process.env': {
+               NODE_ENV: env.NODE_ENV || 'ELECTRON:CLIENT'
+            }
+         })
+      ]
+   });
+});
 
 gulp.task('webpack', ['webpack:electron', 'webpack:client']);
 

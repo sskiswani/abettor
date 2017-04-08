@@ -1,5 +1,5 @@
 import * as electron from 'electron';
-import * as process from 'process';
+import {env} from 'process';
 
 // Module to control application life.
 const app = electron.app;
@@ -9,7 +9,7 @@ const BrowserWindow = electron.BrowserWindow;
 
 import * as path from 'path';
 import * as url from 'url';
-
+console.info(`yo: -------- \n ${JSON.stringify(env, null, 2)}`);
 // Keep a global reference of the window object, if you don't, the window will
 // be closed automatically when the JavaScript object is garbage collected.
 let mainWindow: Electron.BrowserWindow;

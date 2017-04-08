@@ -1,4 +1,5 @@
 const { resolve } = require('path');
+const { env } = require('process');
 const webpack = require('webpack');
 const CommonsChunkPlugin = webpack.optimize.CommonsChunkPlugin;
 const merge = require('webpack-merge');
@@ -10,11 +11,12 @@ const appSrc = `${src}/app`;
 const appDist = `${dist}/app`;
 
 module.exports = merge(require('./webpack.base'), {
+   target: 'electron-renderer',
    entry: {
       app: ['babel-polyfill', `${appSrc}/index.ts`, `${appSrc}/app.scss`]
    },
    output: {
-      path: resolve(appDist)
+      path: resolve(root, appDist)
    },
    devServer: {
       contentBase: [resolve(root, appDist), resolve(root, appSrc)],
