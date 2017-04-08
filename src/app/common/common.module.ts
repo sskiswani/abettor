@@ -1,2 +1,3 @@
 import * as angular from 'angular';
-export default angular.module('common', ['ui.router']);
+import * as uiRouter from 'angular-ui-router';
+export default angular.module('common', [uiRouter]);

@@ -1,2 +1,3 @@
 import common from './common.module';
-export default common;
+export {common as common};
+export default (common.name);

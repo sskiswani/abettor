@@ -1,9 +1,9 @@
 import MarkdownEditorController from './editor.controller';
-const template = require('./editor.template.html') as string;
+require('./style.scss');
 
 export default {
    restrict: 'E',
    bindings: {},
-   template,
+   template: require('./editor.template.html'),
    controller: MarkdownEditorController
 } as ng.IComponentOptions;

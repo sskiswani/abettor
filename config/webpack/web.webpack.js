@@ -22,7 +22,7 @@ module.exports = {
       chunkFilename: '[chunkhash].js',
       devtoolModuleFilenameTemplate: '[absolute-resource-path]',
       filename: '[name].js',
-      path: resolve(root, appDist),
+      path: resolve(root, appDist)
    },
 
    resolve: {

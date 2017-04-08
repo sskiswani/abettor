@@ -11,8 +11,7 @@ module.exports = merge.smart(require('./webpack.base'), {
       main: [`${src}/index.ts`],
    },
    output: {
-      path: resolve(root, dist),
-      libraryTarget: 'commonjs'
+      path: resolve(root, dist)
    },
    externals: [
       (context, request, callback) => {

@@ -1,9 +1,14 @@
 import {IComponentOptions} from 'angular';
-// import NavbarController from './Navbar.controller';
+import NavbarController from './Navbar.controller';
+const template = require('./Navbar.html');
 
 export default {
    restrict: 'E',
-   bindings: {},
+   bindings: {
+      brand: '<',
+      items: '='
+   },
    transclude: true,
-   template: require('./Navbar.html')
+   template,
+   controller: NavbarController
 } as IComponentOptions;

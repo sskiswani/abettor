@@ -26,7 +26,7 @@ module.exports = merge.smart(require('./webpack.base'), {
    module: {
       loaders: [
          {
-            test: /\.(scss|sass)$/,
+            test: /\.(css|scss|sass)$/,
             loader: ExtractTextPlugin.extract({
                fallback: 'style-loader',
                use: [

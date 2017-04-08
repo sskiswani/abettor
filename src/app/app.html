@@ -1,7 +1,4 @@
-<navbar>
-  <a class="navbar-brand" href="#">
-    <h2>abettor</h2>
-  </a>
+<navbar brand="$ctrl.name" items="$ctrl.nav">
   <ul class="navbar-nav mr-auto" id="navbar">
     <li class="nav-item">
       <a class="nav-link" ui-sref="hello" ui-sref-active="active">Hello</a>
@@ -14,14 +11,12 @@
     </li>
   </ul>
 </navbar>
-
 <div class="container-fluid" style="margin-top: 67px;">
   <sidebar></sidebar>
   <main class="col-sm-9 offset-sm-3 col-md-10 offset-md-2 pt-3">
     <h1>Markdown Editor</h1>
     <hr />
     <markdown-editor class="container-fluid"></markdown-editor>
-
     <div ui-view></div>
   </main>
 </div>

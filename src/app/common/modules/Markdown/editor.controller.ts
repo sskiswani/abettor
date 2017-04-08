@@ -2,9 +2,11 @@ import { IScope } from 'angular';
 
 export default class MarkdownEditorController {
    public src = '# hi';
+   private scope: IScope;
 
    /* @ngInject */
    constructor($scope: IScope) {
+      this.scope = $scope;
       $scope.src = this.src;
    }
 
