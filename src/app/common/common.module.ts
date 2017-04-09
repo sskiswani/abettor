@@ -1,3 +1,5 @@
 import * as angular from 'angular';
-import * as uiRouter from 'angular-ui-router';
-export default angular.module('common', [uiRouter]);
+import uiRouter = require('angular-ui-router');
+export default angular.module('common', [
+   (uiRouter as any)
+]);

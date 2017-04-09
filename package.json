@@ -21,6 +21,7 @@
   },
   "devDependencies": {
     "@types/angular": "^1.6.10",
+    "@types/angular-ui-router": "^1.1.36",
     "@types/electron": "^1.4.35",
     "@types/gulp": "~4.0",
     "@types/highlight.js": "^9.1.9",

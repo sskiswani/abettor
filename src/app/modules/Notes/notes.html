@@ -1,0 +1,37 @@
+<div class="container-fluid card-group">
+  <note-card></note-card>
+</div>
+
+
+<hr style="margin-bottom: 100px;"/>
+
+<div class="container-fluid card-group">
+  <card title="'ez card'">
+    test?
+  </card>
+
+  <card title="'cool new card bro'" subtitle="'with a subtitle too!'">
+    <header>
+      <h4 class="card-title">
+        <edit-label value="'test'" type="text" on-update="$ctrl.log(value)">
+        </edit-label>
+      </h4>
+    </header>
+    <content>
+      <edit-label value="'this is a label'" type="text" on-update="$ctrl.log(value)">
+      </edit-label>
+    </content>
+  </card>
+
+  <card title="'transclude?'">
+    <header>
+      <h4 class="card-title" style='color:red;'>blah</h4>
+    </header>
+    <content>
+      <p class="card-text">card-block</p>
+    </content>
+    <footer>
+      card footer!
+    </footer>
+  </card>
+</div>

@@ -1,0 +1,14 @@
+nav.navbar-toggleable-md {
+  flex-direction: row;
+  flex-wrap: nowrap;
+  align-items: center;
+}
+
+.navbar-toggleable-md ul.navbar-nav {
+  flex-direction: row;
+
+  .nav-link {
+    padding-right: .5rem;
+    padding-left: .5rem;
+  }
+}

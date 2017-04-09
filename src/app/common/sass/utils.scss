@@ -1,0 +1,9 @@
+@mixin header-levels($max-size:2.5rem, $min-size: 1.5rem) {
+  $decrement: ($max-size - $min-size) / 6;
+
+  @for $i from 1 through 6 {
+    h#{$i} {
+      font-size: $max-size - $decrement * ($i - 1);
+    }
+  }
+}

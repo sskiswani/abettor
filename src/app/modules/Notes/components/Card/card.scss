@@ -1,0 +1,15 @@
+@import "src/app/common/sass/utils.scss";
+
+card {
+  max-width: 500px;
+  min-width: 200px;
+  margin: 5px;
+
+  @include header-levels(1.25rem, 0.9rem);
+
+  .card-header {
+    padding: 0.5rem 0.7rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+  }
+}

@@ -1,0 +1,8 @@
+<span ng-click="$ctrl.click()">
+  <input type="{{$ctrl.type}}" class="form-control"
+    ng-model="$ctrl.value"
+    ng-keydown="$ctrl.keydown($event)"
+    ng-blur="$ctrl.blur($event)"
+    ng-disabled="!$ctrl.editMode || $ctrl.disable">
+    </input>
+</span>

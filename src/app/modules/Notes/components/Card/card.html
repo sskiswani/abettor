@@ -1,0 +1,22 @@
+<div class="card">
+  <div class="card-header" ng-transclude="headerSlot" ng-if="$ctrl.haveHeader">
+    <h4 class="card-title" ng-if="$ctrl.title">
+      {{$ctrl.title}}
+    </h4>
+    <h6 class="card-subtitle mb-2 text-muted" ng-if="$ctrl.subtitle">
+      {{$ctrl.subtitle}}
+    </h6>
+  </div>
+
+  <div class="card-block" ng-transclude="contentSlot" ng-if="$ctrl.haveContent">
+    <p class="card-text">{{$ctrl.content}}</p>
+  </div>
+
+  <div class="card-block" ng-if="!$ctrl.haveContent">
+    <p class="card-text" ng-transclude></p>
+  </div>
+
+  <div class="card-footer" ng-transclude="footerSlot" ng-if="$ctrl.haveFooter">
+    {{$ctrl.footer}}
+  </div>
+</div>

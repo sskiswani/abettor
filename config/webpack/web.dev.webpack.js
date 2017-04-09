@@ -49,7 +49,11 @@ module.exports = merge.smartStrategy({ entry: 'prepend' })(
          },
       },
       plugins: [
-         new webpack.WatchIgnorePlugin([appDist]),
+         new webpack.WatchIgnorePlugin([
+            appDist,
+            dist,
+            /(node_modules)/
+         ]),
          new webpack.HotModuleReplacementPlugin()
       ]
    }

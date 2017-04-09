@@ -30,7 +30,10 @@ module.exports = {
    plugins: [
       new webpack.NoEmitOnErrorsPlugin(),
       new webpack.NamedModulesPlugin(),
-      new webpack.WatchIgnorePlugin([dist])
+      new webpack.WatchIgnorePlugin([
+         dist,
+         /(node_modules)/
+      ])
    ],
    stats: {
       colors: true

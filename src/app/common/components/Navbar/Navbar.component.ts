@@ -1,6 +1,8 @@
 import {IComponentOptions} from 'angular';
 import NavbarController from './Navbar.controller';
-const template = require('./Navbar.html');
+import './navbar.scss';
+require('./navbar.scss');
+const template = require('./navbar.html');
 
 export default {
    restrict: 'E',

@@ -1,0 +1,16 @@
+edit-label {
+  .form-control {
+    border-color: #5cb3fd;
+
+    &[disabled] {
+      text-decoration: none;
+      background-color: transparent;
+      cursor: pointer;
+      border-color: transparent;
+
+      &:hover {
+        border-color: transparentize(#5cb3fd, 0.65);
+      }
+    }
+  }
+}
