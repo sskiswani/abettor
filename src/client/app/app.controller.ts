@@ -4,7 +4,6 @@ export default class AppController {
    public config = {};
 
    constructor($localStorage: LocalStorageService) {
-      $localStorage.setValue('hello', { test: 'a' });
-      console.info('howdy');
+      $localStorage.set('hello', { test: 'a' });
    }
 }

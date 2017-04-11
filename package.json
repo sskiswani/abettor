@@ -63,13 +63,11 @@
   "dependencies": {
     "angular": "^1.6.3",
     "angular-ui-router": "^0.4.2",
-    "bootstrap": "4.0.0-alpha.6",
     "bulma": "^0.4.0",
     "electron": "^1.6.2",
     "env-cmd": "^5.0.0",
     "express": "^4.15.2",
     "highlight.js": "^9.10.0",
-    "jquery": "^3.2.1",
     "lodash": "^4.17.4",
     "marked": "^0.3.6",
     "reflect-metadata": "^0.1.10"

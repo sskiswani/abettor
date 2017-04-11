@@ -13,11 +13,11 @@ export class LocalStorageService {
    public readonly prefix: string;
    public readonly prefixLength: number;
 
-   private $rootScope: IRootScopeService;
-   private $window: IWindowService;
-   private $log: ILogService;
-   private $timeout: ITimeoutService;
-   private $document: IDocumentService;
+   private readonly $rootScope: IRootScopeService;
+   private readonly $window: IWindowService;
+   private readonly $log: ILogService;
+   private readonly $timeout: ITimeoutService;
+   private readonly $document: Document;
 
    private storage: IStorage = {};
    private oldStorage: IStorage;
@@ -34,7 +34,7 @@ export class LocalStorageService {
       this.$window = $window;
       this.$log = $log;
       this.$timeout = $timeout;
-      this.$document = $document;
+      this.$document = $document ? $document[0] : document;
       this.prefix = prefix;
       this.prefixLength = this.prefix.length;
 
@@ -50,7 +50,7 @@ export class LocalStorageService {
          if ((!doc.hasFocus || !doc.hasFocus()) && this.hasPrefix(event.key)) {
             const key = this.removePrefix(event.key);
             if (event.newValue) {
-               this.setValue(key, JSON.parse(event.newValue));
+               this.set(key, JSON.parse(event.newValue));
             } else {
                this.delete(key);
             }
@@ -63,29 +63,36 @@ export class LocalStorageService {
       $window.addEventListener('beforeunload', () => { this.apply(); });
    }
 
-   public hasPrefix(key: string) {
-      return this.prefix === key.slice(0, this.prefixLength);
-   }
+   public delete(key: string) { return delete this.storage[key]; }
+   public has(key: string) { return key in this.storage; }
 
-   public delete(key: string) {
-      delete this.storage[key];
-   }
-
-   public setValue(key: string, value) {
-      this.oldStorage[key] = this.storage[key];
-      this.storage[key] = value;
-   }
-
-   public getValue<T>(key: string): T;
-   public getValue<T>(key: string, defaultValue?: T) {
+   public get(key: string): any;
+   public get<T>(key: string): T;
+   public get<T>(key: string, defaultValue?: T): T | undefined {
       return this.storage[key] as T || defaultValue;
    }
+
+   public set(key: string, value: any): this {
+      this.oldStorage[key] = this.storage[key];
+      this.storage[key] = value;
+      return this;
+   }
+
+   public get entries() { return this.storage; }
+   public get keys() { return Object.keys(this.storage); }
+   public get values() { return Object.values(this.storage); }
 
    public clear() {
       for (let key in this.storage) {
          delete this.storage[key];
          localStorage.removeItem(this.prefix + key);
       }
+   }
+
+   public get size(): number { return Object.keys(this.storage).length; }
+
+   public hasPrefix(key: string) {
+      return this.prefix === key.slice(0, this.prefixLength);
    }
 
    public apply() {

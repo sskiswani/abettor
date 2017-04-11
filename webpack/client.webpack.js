@@ -20,14 +20,7 @@ module.exports = merge.smart(require('./webpack.base'), {
       app: ['babel-polyfill', `${src}/index.ts`]
    },
    output: {
-      chunkFilename: '[chunkhash].js',
-      devtoolModuleFilenameTemplate: '[absolute-resource-path]',
-      filename: '[name].js',
       path: resolve(root, dist)
-   },
-   resolve: {
-      extensions: ['.ts', '.js'],
-      modules: [resolve(root, src), 'node_modules']
    },
    module: {
       loaders: [
@@ -48,11 +41,6 @@ module.exports = merge.smart(require('./webpack.base'), {
                   },
                ],
             }),
-         },
-         {
-            test: /\.js$/,
-            exclude: /node_modules/,
-            use: [{ loader: 'babel-loader', options: babelOptions }]
          },
          {
             test: /\.ts(x?)$/,

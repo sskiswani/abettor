@@ -1,4 +1,5 @@
 const webpack = require('webpack');
+const { resolve } = require('path');
 const { root, src, dist, babelOptions } = require('./config');
 
 module.exports = {
@@ -14,6 +15,7 @@ module.exports = {
 
    resolve: {
       extensions: ['.ts', '.js'],
+      modules: [resolve(root, src), 'node_modules']
    },
 
    module: {
