@@ -17,21 +17,15 @@
     "skipLibCheck": true,
     "sourceMap": true,
     "strictNullChecks": false,
-    "rootDir": "src",
-    "outDir": "dist",
-    "lib": [
-      "es6",
-      "es7",
-      "dom"
-    ],
-    "module": "commonjs",
-    "target": "esnext"
+    "paths": {
+      "*": [
+        "*",
+        "src/*"
+      ]
+    }
   },
   "exclude": [
     "node_modules",
     "dist"
-  ],
-  "include": [
-    "src/**/*"
   ]
 }

@@ -1,4 +1,4 @@
-module.exports = Object.assign(require('./config'), {
+module.exports = Object.assign(require('../config'), {
    webpackConfig: {
       base: require('./webpack/webpack.base'),
       client: require('./webpack/webpack.base'),

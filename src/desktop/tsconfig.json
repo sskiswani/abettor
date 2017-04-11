@@ -1,0 +1,12 @@
+{
+  "extends": "../../tsconfig.json",
+  "compilerOptions": {
+    "rootDir": ".",
+    "outDir": "../../dist/desktop",
+    "target": "es5"
+  },
+  "include": [
+    "./**/*",
+    "../common/**/*"
+  ]
+}
