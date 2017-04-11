@@ -1,0 +1,10 @@
+<nav class="nav has-shadow">
+    <div class="nav-left" ng-transclude="leftSlot" ng-if="$ctrl.haveLeft">
+    </div>
+
+    <div class="nav-center" ng-transclude="centerSlot" ng-if "$ctrl.haveCenter">
+    </div>
+
+    <div class="nav-menu nav-right" ng-transclude="rightSlot" ng-if="$ctrl.haveSlot('rightSlot')">
+    </div>
+</nav>
