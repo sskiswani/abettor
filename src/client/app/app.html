@@ -1,29 +1,13 @@
-<section class="section">
-  <pre markdown>
-# hello
+<div class="container-fluid">
+  <nav class="nav has-shadow">
+    <div class="nav-left">
+      <a href="/" class="nav-item">
+        <h1 class="title">abettor</h1>
+      </a>
+      <a class="nav-item is-tab" href="home" ui-sref="home" ui-sref-active="is-active">Home</a>
+      <a class="nav-item is-tab" href="todo" ui-sref="todo" ui-sref-active="is-active">TODO</a>
+    </div>
+  </nav>
 
-  ```js
-  function unindent(text = '') {
-    let lines = text.replace(/\t/g, '  ').split(/\r?\n/);
-    let lineCount = lines.length;
-    let min = null;
-
-    for (let i = 0; i < lineCount; ++i) {
-        const line = lines[i];
-        const len = line.match(/^(\s*)/)[0].length;
-        if (len !== line.length) {
-          min = (len < min || min === null) ? len : min;
-        }
-    }
-
-    if (min !== null && min > 0) {
-        for (let i = 0; i < lineCount; ++i) {
-          lines[i] = lines[i].substr(min);
-        }
-    }
-
-    return lines.join('\n');
-  };
-  ```
-  </markdown>
-</section>
+  <div ui-view></div>
+</div>

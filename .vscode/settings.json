@@ -1,0 +1,11 @@
+{
+    "[javascript]": {
+        "editor.tabSize": 3
+    },
+    "[json]": {
+        "editor.tabSize": 3
+    },
+    "[typescript]": {
+        "editor.tabSize": 3
+    }
+}
