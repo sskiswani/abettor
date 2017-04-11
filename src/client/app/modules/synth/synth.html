@@ -1,0 +1,40 @@
+<section class="section">
+  <div class="columns">
+    <div class="column">
+      <a class="button is-primary is-outlined" ng-click="$ctrl.play()" ng-disabled="$ctrl.isPlaying">
+        Play
+        </a>
+      <a class="button is-danger is-outlined" ng-click="$ctrl.stop()" ng-disabled="!$ctrl.isPlaying">
+        Stop
+      </a>
+    </div>
+    <div class="column">
+      <div class="field is-horizontal">
+        <div class="field-label is-large">
+          <label class="label">Frequency ({{$ctrl.frequency}})</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input type="range" ng-model="$ctrl.frequency" ng-disabled="$ctrl.isPlaying" min="0" max="5" step="0.1" />
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="column">
+      <div class="field is-horizontal">
+        <div class="field-label is-large">
+          <label class="label">Gain ({{$ctrl.gain}})</label>
+        </div>
+        <div class="field-body">
+          <div class="field">
+            <p class="control">
+              <input type="range" ng-model="$ctrl.gain" min="0" max="1" step="0.01" />
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

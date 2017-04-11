@@ -4,23 +4,16 @@ import { IStateProvider, IUrlRouterProvider } from 'angular-ui-router';
 import AppConfig from './app.config';
 import AppController from './app.controller';
 import './app.scss';
-import common from './common';
-import './common/components';
 import Markdown from './common/modules/markdown';
 import { LocalStorageProvider } from './services/LocalStorageProvider';
 
 const app = angular
-   .module('app', [(<string><any>uiRouter), Markdown, common])
+   .module('app', [(<string><any>uiRouter), Markdown])
    .config((config, $stateProvider: IStateProvider, $urlRouterProvider: IUrlRouterProvider) => {
       $stateProvider.state({
          name: 'todo',
          url: '/todo',
          template: '<h1>TODO</h1>'
-      });
-
-      $stateProvider.state('home', {
-         url: '',
-         template: '<h1>welcome home</h1>'
       });
 
       $urlRouterProvider.otherwise('/');
@@ -37,3 +30,5 @@ const app = angular
 export { app }
 export default (app.name);
 
+
+import './modules';

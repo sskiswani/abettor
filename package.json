@@ -11,7 +11,7 @@
     "hostname": "localhost"
   },
   "scripts": {
-    "dev-server": "webpack-dev-server --progress --colors --config ./webpack/client.dev.webpack.js",
+    "dev": "webpack-dev-server --progress --colors --config ./webpack/client.dev.webpack.js",
     "clean": "gulp clean",
     "build": "gulp webpack",
     "start": "electron ./dist/main.js"
