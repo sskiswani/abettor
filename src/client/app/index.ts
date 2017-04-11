@@ -1,2 +1,4 @@
-import App from './app';
-export default App;
+import 'angular';
+import 'angular-ui-router';
+
+export * from './app';

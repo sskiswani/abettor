@@ -2,53 +2,36 @@ const gulp = require('gulp');
 const gutil = require('gulp-util');
 const webpack = require('webpack');
 const WebpackDevServer = require('webpack-dev-server');
-const merge = require('webpack-merge');
 
-const { makeTaskLogger, logTask } = require('./helpers');
-const { src } = require('../config');
-
-const webpackConfig = {
-   electron: require('../config/webpack/webpack.electron'),
-   client: require('../config/webpack/webpack.client')
+const logTask = (taskName, ...messages) => {
+   gutil.log(`[${gutil.colors.bold.magenta(taskName)}]`, ...messages);
 };
 
-//~ webpack build for electron app
-gulp.task('webpack:electron', (callback) => {
-   webpack(webpackConfig.electron, (err, stats) => {
-      if (err) { throw new gutil.PluginError('webpack:electron', err); }
-      logTask('webpack:electron', stats.toString({
-         colors: true,
-         chunks: false,
-         errorDetails: true
-      }));
-      callback();
-   });
+gulp.task('build:client', (callback) => {
+   webpack(
+      require('../webpack/client.webpack'),
+      (err, stats) => {
+         if (err) { throw new gutil.PluginError('build:client', err); }
+         logTask('build:client', stats.toString({
+            colors: true,
+            chunks: false,
+            errorDetails: true
+         }));
+         callback();
+      }
+   );
 });
 
-//~ webpack build for client app
-gulp.task('webpack:client', (callback) => {
-   webpack(webpackConfig.client, (err, stats) => {
-      if (err) { throw new gutil.PluginError('webpack:client', err); }
-      logTask('webpack:client', stats.toString({
-         colors: true,
-         chunks: false,
-         errorDetails: true
-      }));
-      callback();
-   });
-});
-
-gulp.task('webpack', ['webpack:electron', 'webpack:client']);
-
-function createDevServerTasks() {
-   const devConfig = require('../config/webpack/web.dev.webpack');
+(function createClientDevTask() {
+   const devConfig = require('../webpack/client.dev.webpack');
    const { devServer } = devConfig;
    const { port, publicPath } = devServer;
-   const statsOptions = Object.assign({
+
+   const statsOptions = Object.assign(devServer.stats, {
       colors: true,
       chunks: false,
       errorDetails: true
-   }, devServer.stats);
+   });
 
    //~ create compiler
    const devCompiler = webpack(devConfig);
@@ -56,16 +39,14 @@ function createDevServerTasks() {
    devCompiler.plugin('done', (stats) => {
       if (!logged) {
          logged = true;
-         logTask('webpack:dev-server',
-            gutil.colors.bold.underline.cyan(`http://localhost:${port}/`),
-            '\n',
-            gutil.colors.bold.underline.cyan(publicPath));
+         logTask('webpack:dev-server', gutil.colors.bold.underline.cyan(publicPath));
       }
+
       gutil.beep();
    });
 
    //~ create build task
-   gulp.task('webpack:dev', (callback) => {
+   gulp.task('build:client:dev', (callback) => {
       devCompiler.run((err, wbStats) => {
          if (err) { throw new gutil.PluginError('webpack:dev', err); }
          logTask('webpack:dev', wbStats.toString(statsOptions));
@@ -73,19 +54,14 @@ function createDevServerTasks() {
       });
    });
 
-   gulp.task('webpack:dev-server', (callback) => {
+   gulp.task('build:client:dev-server', (callback) => {
       (new WebpackDevServer(devCompiler, { stats: statsOptions }))
          .listen(port, 'localhost', (err) => {
             if (err) { throw new gutil.PluginError('webpack:dev-server', err); }
-            // gutil.log('[webpack:dev-server]', `http://localhost:${port}/`);
             // keep the server alive or continue?
             callback();
          });
    });
-};
+})();
 
-createDevServerTasks();
-
-gulp.task('watch', ['webpack:client:dev'], () => {
-   gulp.watch(`${src}/app/**/*`, ['webpack:client:dev']);
-});
+gulp.task('build', ['build:client']);

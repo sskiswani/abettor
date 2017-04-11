@@ -1,19 +1,10 @@
-
-interface INavItem {
-   label?: string;
-   href?: string;
-}
-
-
+import { LocalStorageService } from './services/LocalStorageService';
 export default class AppController {
    public name = 'app';
-   public nav: INavItem[] = [];
    public config = {};
 
-   constructor(config) {
-      Object.assign(this.config, config);
-
-      this.name = config.name;
-      this.nav = config.nav;
+   constructor($localStorage: LocalStorageService) {
+      $localStorage.setValue('hello', { test: 'a' });
+      console.info('howdy');
    }
 }

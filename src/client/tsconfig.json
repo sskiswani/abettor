@@ -1,7 +1,6 @@
 {
   "extends": "../../tsconfig.json",
   "compilerOptions": {
-    "rootDir": ".",
     "outDir": "../../dist/client",
     "lib": [
       "dom",
@@ -13,5 +12,10 @@
   "include": [
     "./**/*",
     "../common/**/*"
+  ],
+  "files": [
+    "./index.ts",
+    "../common/index.ts",
+    "../common/require.d.ts"
   ]
 }
